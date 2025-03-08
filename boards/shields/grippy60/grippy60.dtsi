@@ -1,0 +1,67 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+  chosen {
+    zmk,kscan = &kscan0;
+    zmk,matrix_transform = &default_transform;
+  };
+
+  kscan0: kscan0 {
+    compatible = "zmk,kscan-gpio-matrix";
+    diode-direction = "col2row";
+    wakeup-source;
+
+    col-gpios
+      = <&pro_micro 10 GPIO_ACTIVE_HIGH> // OUTER THUMB
+      , <&pro_micro 16 GPIO_ACTIVE_HIGH> // INNER THUMB
+      , <&pro_micro 14 GPIO_ACTIVE_HIGH> // INDEX
+      , <&pro_micro 15 GPIO_ACTIVE_HIGH> // MIDDLE
+      , <&pro_micro 18 GPIO_ACTIVE_HIGH> // RING
+      , <&pro_micro 19 GPIO_ACTIVE_HIGH> // PINKY
+      ;
+
+    row-gpios
+      = <&pro_micro  5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // LT
+      , <&pro_micro  6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // CT
+      , <&pro_micro  7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // UP
+      , <&pro_micro  8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // RT
+      , <&pro_micro  9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // DN
+      ;
+  };
+
+  default_transform: keymap_transform0 {
+    #define OT 0
+    #define IT 1
+    #define IN 2
+    #define MD 3
+    #define RG 4
+    #define PK 5
+
+    #define LT 0
+    #define CT 1
+    #define UP 2
+    #define RT 3
+    #define DN 4
+
+    compatible = "zmk,matrix-transform";
+    columns = <6>;
+    rows = <5>;
+    map = <
+      /*       LEFT        */ 
+      /* TH1 */ RC(LT,OT) /*     */  /* TH2 */ RC(LT,IT) /*     */  /* IND */ RC(LT,IN) /*     */
+      RC(UP,OT) RC(CT,OT) RC(DN,OT)  RC(UP,IT) RC(CT,IT) RC(DN,IT)  RC(UP,IN) RC(CT,IN) RC(DN,IN)
+      /*     */ RC(RT,OT) /*     */  /*     */ RC(RT,IT) /*     */  /*     */ RC(RT,IN) /*     */
+      /* MID */ RC(LT,MD) /*     */  /* RNG */ RC(LT,RG) /*     */  /* PKY */ RC(LT,PK) /*     */
+      RC(UP,MD) RC(CT,MD) RC(DN,MD)  RC(UP,RG) RC(CT,RG) RC(DN,RG)  RC(UP,PK) RC(CT,PK) RC(DN,PK)
+      /*     */ RC(RT,MD) /*     */  /*     */ RC(RT,RG) /*     */  /*     */ RC(RT,PK) /*     */
+
+      /*       RIGHT       */ 
+      /* TH1   */ RC(LT,OT+6) /*       */  /* TH2   */ RC(LT,IT+6) /*       */  /* IND   */ RC(LT,IN+6) /*       */
+      RC(UP,OT+6) RC(CT,OT+6) RC(DN,OT+6)  RC(UP,IT+6) RC(CT,IT+6) RC(DN,IT+6)  RC(UP,IN+6) RC(CT,IN+6) RC(DN,IN+6)
+      /*       */ RC(RT,OT+6) /*       */  /*       */ RC(RT,IT+6) /*       */  /*       */ RC(RT,IN+6) /*       */
+      /* MID   */ RC(LT,MD+6) /*       */  /* RNG   */ RC(LT,RG+6) /*       */  /* PKY   */ RC(LT,PK+6) /*       */
+      RC(UP,MD+6) RC(CT,MD+6) RC(DN,MD+6)  RC(UP,RG+6) RC(CT,RG+6) RC(DN,RG+6)  RC(UP,PK+6) RC(CT,PK+6) RC(DN,PK+6)
+      /*       */ RC(RT,MD+6) /*       */  /*       */ RC(RT,RG+6) /*       */  /*       */ RC(RT,PK+6) /*       */
+    >;
+  };
+};

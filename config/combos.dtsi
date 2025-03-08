@@ -1,0 +1,37 @@
+#include "grippy60.h"
+#define OFFSET_RIGHT(KEYPOS) (KEYPOS + 30)
+#define COMBO(NAME, BINDINGS, KEYPOS) \
+  combo_##NAME {                      \
+    timeout-ms = <COMBO_TIMEOUT>;     \
+    bindings = <BINDINGS>;            \
+    key-positions = <KEYPOS>;         \
+    layers = <COMBO_LAYERS>;          \
+  };
+#define BCOMBO(NAME, BINDINGS, LEFT_KEYPOS, RIGHT_KEYPOS) \
+  combo_l_##NAME {                    \
+    timeout-ms = <COMBO_TIMEOUT>;     \
+    bindings = <BINDINGS>;            \
+    key-positions = <LEFT_KEYPOS>;    \
+    layers = <COMBO_LAYERS>;          \
+  };                                  \
+  combo_r_##NAME {                    \
+    timeout-ms = <COMBO_TIMEOUT>;     \
+    bindings = <BINDINGS>;            \
+    key-positions = <RIGHT_KEYPOS>;   \
+    layers = <COMBO_LAYERS>;          \
+  };
+
+#undef COMBO_LAYERS
+#define COMBO_LAYERS BASE_LAYERS
+
+BCOMBO(R, &kp R, LPKU, RPKU)
+BCOMBO(S, &kp S, LRGU, RRGU)
+BCOMBO(N, &kp N, LMDU, RMDU)
+BCOMBO(I, &kp I, LINU, RINU)
+BCOMBO(A, &kp A, LPKD, RPKD)
+BCOMBO(O, &kp O, LRGD, RRGD)
+BCOMBO(T, &kp T, LMDD, RMDD)
+BCOMBO(E, &kp E, LIND, RIND)
+
+BCOMBO(BSPC,  &kp BSPC,  LOTL, ROTR)
+BCOMBO(SPACE, &kp SPACE, LITL, RITR)
