@@ -12,6 +12,8 @@
 #define TIMEOUT_XLONG 1500
 
 // Labels for switch directions according to the matrix
+
+// Left half
 #define LOTU 0
 #define LOTL 3
 #define LOTC 4
@@ -47,3 +49,40 @@
 #define LPKC 25
 #define LPKR 26
 #define LPKD 29
+
+// Right half
+#define ROTU 30
+#define ROTL 33
+#define ROTC 34
+#define ROTR 35
+#define ROTD 42
+
+#define RITU 31
+#define RITL 36
+#define RITC 37
+#define RITR 38
+#define RITD 43
+
+#define RINU 32
+#define RINL 39
+#define RINC 40
+#define RINR 41
+#define RIND 44
+
+#define RMDU 45
+#define RMDL 48
+#define RMDC 49
+#define RMDR 50
+#define RMDD 57
+
+#define RRGU 46
+#define RRGL 51
+#define RRGC 52
+#define RRGR 53
+#define RRGD 58
+
+#define RPKU 47
+#define RPKL 54
+#define RPKC 55
+#define RPKR 56
+#define RPKD 59

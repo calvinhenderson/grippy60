@@ -1,4 +1,5 @@
 #include "grippy60.h"
+
 #define OFFSET_RIGHT(KEYPOS) (KEYPOS + 30)
 #define COMBO(NAME, BINDINGS, KEYPOS) \
   combo_##NAME {                      \
