@@ -56,12 +56,12 @@
       /*     */ RC(RT,MD) /*     */  /*     */ RC(RT,RG) /*     */  /*     */ RC(RT,PK) /*     */
 
       /*       RIGHT       */ 
-      /* TH1   */ RC(LT,OT+6) /*       */  /* TH2   */ RC(LT,IT+6) /*       */  /* IND   */ RC(LT,IN+6) /*       */
-      RC(UP,OT+6) RC(CT,OT+6) RC(DN,OT+6)  RC(UP,IT+6) RC(CT,IT+6) RC(DN,IT+6)  RC(UP,IN+6) RC(CT,IN+6) RC(DN,IN+6)
-      /*       */ RC(RT,OT+6) /*       */  /*       */ RC(RT,IT+6) /*       */  /*       */ RC(RT,IN+6) /*       */
-      /* MID   */ RC(LT,MD+6) /*       */  /* RNG   */ RC(LT,RG+6) /*       */  /* PKY   */ RC(LT,PK+6) /*       */
-      RC(UP,MD+6) RC(CT,MD+6) RC(DN,MD+6)  RC(UP,RG+6) RC(CT,RG+6) RC(DN,RG+6)  RC(UP,PK+6) RC(CT,PK+6) RC(DN,PK+6)
-      /*       */ RC(RT,MD+6) /*       */  /*       */ RC(RT,RG+6) /*       */  /*       */ RC(RT,PK+6) /*       */
+      /* TH1   */ RC(LT+6,OT) /*       */  /* TH2   */ RC(LT+6,IT) /*       */  /* IND   */ RC(LT+6,IN) /*       */
+      RC(UP+6,OT) RC(CT+6,OT) RC(DN+6,OT)  RC(UP+6,IT) RC(CT+6,IT) RC(DN+6,IT)  RC(UP+6,IN) RC(CT+6,IN) RC(DN+6,IN)
+      /*       */ RC(RT+6,OT) /*       */  /*       */ RC(RT+6,IT) /*       */  /*       */ RC(RT+6,IN) /*       */
+      /* MID   */ RC(LT+6,MD) /*       */  /* RNG   */ RC(LT+6,RG) /*       */  /* PKY   */ RC(LT+6,PK) /*       */
+      RC(UP+6,MD) RC(CT+6,MD) RC(DN+6,MD)  RC(UP+6,RG) RC(CT+6,RG) RC(DN+6,RG)  RC(UP+6,PK) RC(CT+6,PK) RC(DN+6,PK)
+      /*       */ RC(RT+6,MD) /*       */  /*       */ RC(RT+6,RG) /*       */  /*       */ RC(RT+6,PK) /*       */
     >;
   };
 };
