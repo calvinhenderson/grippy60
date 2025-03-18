@@ -26,13 +26,36 @@
     
     linux_layer {
       bindings = <
-              &none             &none             &none      
-        &none &none &none &none &none &none &none &none &none
-              &none             &none             &none      
 
-              &none             &none             &none      
-        &none &none &none &none &none &none &none &none &none
-              &none             &none             &none      
+	/* Outer thumb */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	/* Inner thumb */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	/* Index */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	/* Middle */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	/* Ring */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	/* Pinky */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
       >;
     };
   };
