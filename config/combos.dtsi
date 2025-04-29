@@ -22,17 +22,129 @@
     layers = <COMBO_LAYERS>;          \
   };
 
+#define WITH_MOD(MOD_PREFIX, NAME, BINDINGS, MOD_BINDINGS, L_MOD_KEY, LEFT_KEYPOS, R_MOD_KEY, RIGHT_KEYPOS) \
+  combo_l_##MOD_PREFIX##_##NAME {            \
+    timeout-ms = <COMBO_TIMEOUT>;            \
+    bindings = <BINDINGS>;                   \
+    key-positions = <L_MOD_KEY LEFT_KEYPOS>; \
+    layers = <COMBO_LAYERS>;                 \
+  };                                         \
+  combo_r_##MOD_PREFIX##_##NAME {            \
+    timeout-ms = <COMBO_TIMEOUT>;            \
+    bindings = <BINDINGS>;                   \
+    key-positions = <R_MOD_KEY RIGHT_KEYPOS>;\
+    layers = <COMBO_LAYERS>;                 \
+  };                                         \
+  combo_l_##NAME {                           \
+    timeout-ms = <COMBO_TIMEOUT>;            \
+    bindings = <BINDINGS>;                   \
+    key-positions = <LEFT_KEYPOS>;           \
+    layers = <COMBO_LAYERS>;                 \
+  };                                         \
+  combo_r_##NAME {                           \
+    timeout-ms = <COMBO_TIMEOUT>;            \
+    bindings = <BINDINGS>;                   \
+    key-positions = <RIGHT_KEYPOS>;          \
+    layers = <COMBO_LAYERS>;                 \
+  };
+
 #undef COMBO_LAYERS
 #define COMBO_LAYERS BASE_LAYERS
 
-BCOMBO(R, &kp R, L_PF_F, R_PF_F)
-BCOMBO(S, &kp S, L_RF_F, R_RF_F)
-BCOMBO(N, &kp N, L_MF_F, R_MF_F)
-BCOMBO(I, &kp I, L_IF_F, R_IF_F)
-BCOMBO(A, &kp A, L_PF_B, R_PF_B)
-BCOMBO(O, &kp O, L_RF_B, R_RF_B)
-BCOMBO(T, &kp T, L_MF_B, R_MF_B)
-BCOMBO(E, &kp E, L_IF_B, R_IF_B)
+#define L_BSPC_KEY  L_IT_F
+#define R_BSPC_KEY  R_IT_F
+#define L_SHIFT_KEY L_IT_B
+#define R_SHIFT_KEY R_IT_B
+#define L_SYM_KEY   L_OT_B
+#define R_SYM_KEY   R_OT_B
 
-BCOMBO(BSPC,  &kp BSPC,  L_OT_L, R_OT_R)
-BCOMBO(SPACE, &kp SPACE, L_IT_L, R_IT_R)
+// Mods
+BCOMBO(BSPC,  &kp BSPC,  L_BSPC_KEY,  R_BSPC_KEY)
+BCOMBO(SPACE, &kp SPACE, L_SHIFT_KEY, R_SHIFT_KEY)
+
+BCOMBO(LSHFT, &kp LSHFT, L_PF_D,     R_PF_D)
+BCOMBO(LALT,  &kp LALT,  L_RF_D,     R_RF_D)
+BCOMBO(LCTRL, &kp LCTRL, L_MF_D,     R_MF_D)
+BCOMBO(LGUI,  &kp LGUI,  L_IF_D,     R_IF_D)
+
+// Alpha-keys
+WITH_MOD(S, R, &kp R, &kp LS(R), L_SHIFT_KEY, L_PF_F, R_SHIFT_KEY, R_PF_F)
+WITH_MOD(S, S, &kp S, &kp LS(S), L_SHIFT_KEY, L_RF_F, R_SHIFT_KEY, R_RF_F)
+WITH_MOD(S, N, &kp N, &kp LS(N), L_SHIFT_KEY, L_MF_F, R_SHIFT_KEY, R_MF_F)
+WITH_MOD(S, I, &kp I, &kp LS(I), L_SHIFT_KEY, L_IF_F, R_SHIFT_KEY, R_IF_F)
+WITH_MOD(S, A, &kp A, &kp LS(A), L_SHIFT_KEY, L_PF_B, R_SHIFT_KEY, R_PF_B)
+WITH_MOD(S, O, &kp O, &kp LS(O), L_SHIFT_KEY, L_RF_B, R_SHIFT_KEY, R_RF_B)
+WITH_MOD(S, T, &kp T, &kp LS(T), L_SHIFT_KEY, L_MF_B, R_SHIFT_KEY, R_MF_B)
+WITH_MOD(S, E, &kp E, &kp LS(E), L_SHIFT_KEY, L_IF_B, R_SHIFT_KEY, R_IF_B)
+WITH_MOD(S, B, &kp B, &kp LS(B), L_SHIFT_KEY, L_PF_F L_RF_F, R_SHIFT_KEY, R_RF_F R_PF_F)
+WITH_MOD(S, Y, &kp Y, &kp LS(Y), L_SHIFT_KEY, L_MF_F L_IF_F, R_SHIFT_KEY, L_IF_F L_MF_F)
+WITH_MOD(S, L, &kp L, &kp LS(L), L_SHIFT_KEY, L_PF_B L_RF_B, R_SHIFT_KEY, R_RF_B R_PF_B)
+WITH_MOD(S, H, &kp H, &kp LS(H), L_SHIFT_KEY, L_MF_B L_IF_B, R_SHIFT_KEY, R_IF_B R_MF_B)
+WITH_MOD(S, P, &kp P, &kp LS(P), L_SHIFT_KEY, L_RF_F L_MF_F, R_SHIFT_KEY, R_MF_F R_RF_F)
+WITH_MOD(S, U, &kp U, &kp LS(U), L_SHIFT_KEY, L_RF_B L_MF_B, R_SHIFT_KEY, R_MF_B R_RF_B)
+WITH_MOD(S, G, &kp G, &kp LS(G), L_SHIFT_KEY, L_PF_F L_IF_F, R_SHIFT_KEY, R_IF_F R_PF_F)
+WITH_MOD(S, D, &kp D, &kp LS(D), L_SHIFT_KEY, L_PF_B L_IF_B, R_SHIFT_KEY, R_IF_B R_PF_B)
+WITH_MOD(S, Z, &kp Z, &kp LS(Z), L_SHIFT_KEY, L_PF_F L_MF_F, R_SHIFT_KEY, R_MF_F R_PF_F)
+WITH_MOD(S, F, &kp F, &kp LS(F), L_SHIFT_KEY, L_RF_F L_IF_F, R_SHIFT_KEY, R_IF_F R_RF_F)
+WITH_MOD(S, Q, &kp Q, &kp LS(Q), L_SHIFT_KEY, L_PF_B L_MF_B, R_SHIFT_KEY, R_MF_B R_PF_B)
+WITH_MOD(S, C, &kp C, &kp LS(C), L_SHIFT_KEY, L_RF_B L_IF_B, R_SHIFT_KEY, R_IF_B R_RF_B)
+WITH_MOD(S, X, &kp X, &kp LS(X), L_SHIFT_KEY, L_PF_F L_MF_B, R_SHIFT_KEY, R_MF_B R_PF_F)
+WITH_MOD(S, K, &kp K, &kp LS(K), L_SHIFT_KEY, L_RF_B L_IF_F, R_SHIFT_KEY, R_IF_F R_RF_B)
+WITH_MOD(S, V, &kp V, &kp LS(V), L_SHIFT_KEY, L_RF_F L_IF_B, R_SHIFT_KEY, R_IF_B R_RF_F)
+WITH_MOD(S, J, &kp J, &kp LS(J), L_SHIFT_KEY, L_PF_B L_MF_F, R_SHIFT_KEY, R_MF_F R_PF_B)
+WITH_MOD(S, M, &kp M, &kp LS(M), L_SHIFT_KEY, L_PF_F L_IF_B, R_SHIFT_KEY, R_IF_B R_PF_F)
+WITH_MOD(S, W, &kp W, &kp LS(W), L_SHIFT_KEY, L_PF_B L_IF_F, R_SHIFT_KEY, R_IF_F R_PF_B)
+
+// Symbols
+BCOMBO(LT,     &kp LT,     L_PF_F, R_PF_F)
+BCOMBO(RBRC,   &kp RBRC,   L_SYM_KEY L_RF_F, R_SYM_KEY R_RF_F)
+BCOMBO(RBKT,   &kp RBKT,   L_SYM_KEY L_MF_F, R_SYM_KEY R_MF_F)
+BCOMBO(RPAR,   &kp RPAR,   L_SYM_KEY L_IF_F, R_SYM_KEY R_IF_F)
+BCOMBO(GT,     &kp GT,     L_SYM_KEY L_PF_B, R_SYM_KEY R_PF_B)
+BCOMBO(LBRC,   &kp LBRC,   L_SYM_KEY L_RF_B, R_SYM_KEY R_RF_B)
+BCOMBO(LBKT,   &kp LBKT,   L_SYM_KEY L_MF_B, R_SYM_KEY R_MF_B)
+BCOMBO(LPAR,   &kp LPAR,   L_SYM_KEY L_IF_B, R_SYM_KEY R_IF_B)
+
+BCOMBO(FSLH,   &kp FSLH,               L_RF_F L_MF_B,             R_MF_B R_RF_F)
+BCOMBO(BSLH,   &kp BSLH,   L_SHIFT_KEY L_RF_F L_MF_B, R_SHIFT_KEY R_MF_B R_RF_F)
+BCOMBO(PIPE,   &kp PIPE,   L_SYM_KEY   L_RF_F L_MF_B, R_SYM_KEY   R_MF_B R_RF_F)
+
+BCOMBO(MINUS,  &kp MINUS,              L_RF_B L_MF_F,             R_MF_F R_RF_B)
+BCOMBO(UNDER,  &kp UNDER,  L_SHIFT_KEY L_RF_B L_MF_F, R_SHIFT_KEY R_MF_F R_RF_B)
+BCOMBO(PRCNT,  &kp PRCNT,  L_SYM_KEY   L_RF_B L_MF_F, R_SYM_KEY   R_MF_F R_RF_B)
+
+BCOMBO(SEMI,   &kp SEMI,               L_PF_F L_RF_B,             R_RF_B R_PF_F)
+BCOMBO(COLON,  &kp COLON,  L_SHIFT_KEY L_PF_F L_RF_B, R_SHIFT_KEY R_RF_B R_PF_F)
+
+BCOMBO(QMARK,  &kp QMARK,              L_MF_B L_IF_F,             R_IF_F R_MF_B)
+BCOMBO(EXCL,   &kp EXCL,   L_SHIFT_KEY L_MF_B L_IF_F, R_SHIFT_KEY R_IF_F R_MF_B)
+
+BCOMBO(COMMA,  &kp COMMA,              L_MF_F L_IF_B,             R_IF_B R_MF_F)
+BCOMBO(DOT,    &kp DOT,    L_SHIFT_KEY L_MF_F L_IF_B, R_SHIFT_KEY R_IF_B R_MF_F)
+BCOMBO(TILDE,  &kp TILDE,  L_SYM_KEY   L_MF_F L_IF_B, R_SYM_KEY   R_IF_B R_MF_F)
+
+BCOMBO(SQT,    &kp SQT,                L_PF_B L_RF_F,             R_RF_F R_PF_B)
+BCOMBO(DQT,    &kp DQT,    L_SHIFT_KEY L_PF_B L_RF_F, R_SHIFT_KEY R_RF_F R_PF_B)
+BCOMBO(GRAVE,  &kp GRAVE,  L_SYM_KEY   L_PF_B L_RF_F, R_SYM_KEY   R_RF_F R_PF_B)
+
+BCOMBO(HASH,   &kp HASH,   L_SYM_KEY L_PF_F L_IF_F, R_SYM_KEY R_IF_F R_PF_F)
+BCOMBO(AT,     &kp AT,     L_SYM_KEY L_PF_B L_IF_B, R_SYM_KEY R_IF_B R_PF_B)
+BCOMBO(CARET,  &kp CARET,  L_SYM_KEY L_PF_F L_MF_B, R_SYM_KEY R_MF_B R_PF_F)
+BCOMBO(PLUS,   &kp PLUS,   L_SYM_KEY L_RF_B L_IF_F, R_SYM_KEY R_IF_F R_RF_B)
+BCOMBO(STAR,   &kp STAR,   L_SYM_KEY L_RF_F L_IF_B, R_SYM_KEY R_IF_B R_RF_F)
+BCOMBO(EQUAL,  &kp EQUAL,  L_SYM_KEY L_PF_B L_MF_F, R_SYM_KEY R_MF_F R_PF_B)
+BCOMBO(DOLLAR, &kp DOLLAR, L_SYM_KEY L_PF_F L_IF_B, R_SYM_KEY R_IF_B R_PF_F)
+BCOMBO(AMPS,   &kp AMPS,   L_SYM_KEY L_PF_B L_IF_F, R_SYM_KEY R_IF_F R_PF_B)
+
+// Numbers
+BCOMBO(N0,     &kp N0,     L_SYM_KEY L_MF_B L_IF_B, R_SYM_KEY R_IF_B R_MF_B)
+BCOMBO(N1,     &kp N1,     L_SYM_KEY L_RF_B L_IF_B, R_SYM_KEY R_IF_B R_RF_B)
+BCOMBO(N2,     &kp N2,     L_SYM_KEY L_RF_B L_MF_B, R_SYM_KEY R_MF_B R_RF_B)
+BCOMBO(N3,     &kp N3,     L_SYM_KEY L_PF_B L_MF_B, R_SYM_KEY R_MF_B R_PF_B)
+BCOMBO(N4,     &kp N4,     L_SYM_KEY L_PF_B L_RF_B, R_SYM_KEY R_RF_B R_PF_B)
+BCOMBO(N5,     &kp N5,     L_SYM_KEY L_MF_F L_IF_F, R_SYM_KEY L_IF_F L_MF_F)
+BCOMBO(N6,     &kp N6,     L_SYM_KEY L_RF_F L_IF_F, R_SYM_KEY R_IF_F R_RF_F)
+BCOMBO(N7,     &kp N7,     L_SYM_KEY L_RF_F L_MF_F, R_SYM_KEY R_MF_F R_RF_F)
+BCOMBO(N8,     &kp N8,     L_SYM_KEY L_PF_F L_MF_F, R_SYM_KEY R_MF_F R_PF_F)
+BCOMBO(N9,     &kp N9,     L_SYM_KEY L_PF_F L_RF_F, R_SYM_KEY R_RF_F R_PF_F)
+

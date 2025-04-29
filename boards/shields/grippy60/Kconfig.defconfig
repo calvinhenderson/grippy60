@@ -20,8 +20,8 @@ if SHIELD_GRIPPY60_LEFT || SHIELD_GRIPPY60_RIGHT
     config ZMK_BLE
         default y
 
-    config ZMK_POINTING
-        default y
+    # config ZMK_POINTING
+    #     default y
 
     config I2C
         default y

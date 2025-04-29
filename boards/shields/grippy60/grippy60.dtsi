@@ -17,7 +17,7 @@
   chosen {
     zmk,kscan = &kscan0;
     zmk,matrix_transform = &default_transform;
-    // zephyr,display = &oled;
+    zephyr,display = &oled;
   };
 
   kscan0: kscan0 {
@@ -25,21 +25,22 @@
     diode-direction = "col2row";
     wakeup-source;
 
+
     col-gpios
-      = <&pro_micro  4 GPIO_ACTIVE_HIGH> // OUTER THUMB
+      = <&pro_micro  6 GPIO_ACTIVE_HIGH> // OUTER THUMB
       , <&pro_micro  5 GPIO_ACTIVE_HIGH> // INNER THUMB
-      , <&pro_micro  6 GPIO_ACTIVE_HIGH> // INDEX FINGER
-      , <&pro_micro  7 GPIO_ACTIVE_HIGH> // MIDDLE FINGER
+      , <&pro_micro  4 GPIO_ACTIVE_HIGH> // INDEX FINGER
+      , <&pro_micro  3 GPIO_ACTIVE_HIGH> // MIDDLE FINGER
       , <&pro_micro  8 GPIO_ACTIVE_HIGH> // RING FINGER
-      , <&pro_micro  3 GPIO_ACTIVE_HIGH> // PINKY FINGER
+      , <&pro_micro  7 GPIO_ACTIVE_HIGH> // PINKY FINGER
       ;
 
     row-gpios
-      = <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // FW
-      , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // RT
+      = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // FW
+      , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // LT
+      , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // DN
+      , <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // RT
       , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // BK
-      , <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // DN
-      , <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // LT
       ;
   };
 
@@ -48,69 +49,77 @@
     columns = <6>;
     rows = <5>;
     map = <
-        /* LEFT                            |        RIGHT  */
-        /* OUTER THUMB                                     */
-        /*     */ RC(LT,OT) /*             |               */ RC(LT+5,OT)
-        RC(FW,OT) RC(DN,OT) RC(BK,OT) /*   |   */ RC(FW+5,OT) RC(DN+5,OT) RC(BK+5,OT)
-        /*     */ RC(RT,OT) /*             |               */ RC(RT+5,OT)
-        /*                                 |               */
-        /* INNER THUMB                                     */
-        /*     */ RC(LT,IT) /*             |               */ RC(LT+5,IT)
-        RC(FW,IT) RC(DN,IT) RC(BK,IT) /*   |   */ RC(FW+5,IT) RC(DN+5,IT) RC(BK+5,IT)
-        /*     */ RC(RT,IT) /*             |               */ RC(RT+5,IT)
-        /*                                 |               */
-        /* INDEX FINGER                                    */
-        /*     */ RC(LT,IF) /*             |               */ RC(LT+5,IF)
-        RC(FW,IF) RC(DN,IF) RC(BK,IF) /*   |   */ RC(FW+5,IF) RC(DN+5,IF) RC(BK+5,IF)
-        /*     */ RC(RT,IF) /*             |               */ RC(RT+5,IF)
-        /*                                 |               */
-        /* MIDDLE FINGER                                   */
-        /*     */ RC(LT,MF) /*             |               */ RC(LT+5,MF)
-        RC(FW,MF) RC(DN,MF) RC(BK,MF) /*   |   */ RC(FW+5,MF) RC(DN+5,MF) RC(BK+5,MF)
-        /*     */ RC(RT,MF) /*             |               */ RC(RT+5,MF)
-        /*                                 |               */
-        /* RING FINGER                                     */
-        /*     */ RC(LT,RF) /*             |               */ RC(LT+5,RF)
-        RC(FW,RF) RC(DN,RF) RC(BK,RF) /*   |   */ RC(FW+5,RF) RC(DN+5,RF) RC(BK+5,RF)
-        /*     */ RC(RT,RF) /*             |               */ RC(RT+5,RF)
-        /*                                 |               */
-        /* PINKY FINGER                                    */
-        /*     */ RC(LT,PF) /*             |               */ RC(LT+5,PF)
-        RC(FW,PF) RC(DN,PF) RC(BK,PF) /*   |   */ RC(FW+5,PF) RC(DN+5,PF) RC(BK+5,PF)
-        /*     */ RC(RT,PF) /*             |               */ RC(RT+5,PF)
+      /* LEFT                            |        RIGHT  */
+      /* OUTER THUMB                                     */
+      /*     */ RC(LT,OT) /*             |               */ RC(LT+5,OT)
+      RC(FW,OT) RC(DN,OT) RC(BK,OT) /*   |   */ RC(FW+5,OT) RC(DN+5,OT) RC(BK+5,OT)
+      /*     */ RC(RT,OT) /*             |               */ RC(RT+5,OT)
+      /*                                 |               */
+      /* INNER THUMB                                     */
+      /*     */ RC(LT,IT) /*             |               */ RC(LT+5,IT)
+      RC(FW,IT) RC(DN,IT) RC(BK,IT) /*   |   */ RC(FW+5,IT) RC(DN+5,IT) RC(BK+5,IT)
+      /*     */ RC(RT,IT) /*             |               */ RC(RT+5,IT)
+      /*                                 |               */
+      /* INDEX FINGER                                    */
+      /*     */ RC(LT,IF) /*             |               */ RC(LT+5,IF)
+      RC(FW,IF) RC(DN,IF) RC(BK,IF) /*   |   */ RC(FW+5,IF) RC(DN+5,IF) RC(BK+5,IF)
+      /*     */ RC(RT,IF) /*             |               */ RC(RT+5,IF)
+      /*                                 |               */
+      /* MIDDLE FINGER                                   */
+      /*     */ RC(LT,MF) /*             |               */ RC(LT+5,MF)
+      RC(FW,MF) RC(DN,MF) RC(BK,MF) /*   |   */ RC(FW+5,MF) RC(DN+5,MF) RC(BK+5,MF)
+      /*     */ RC(RT,MF) /*             |               */ RC(RT+5,MF)
+      /*                                 |               */
+      /* RING FINGER                                     */
+      /*     */ RC(LT,RF) /*             |               */ RC(LT+5,RF)
+      RC(FW,RF) RC(DN,RF) RC(BK,RF) /*   |   */ RC(FW+5,RF) RC(DN+5,RF) RC(BK+5,RF)
+      /*     */ RC(RT,RF) /*             |               */ RC(RT+5,RF)
+      /*                                 |               */
+      /* PINKY FINGER                                    */
+      /*     */ RC(LT,PF) /*             |               */ RC(LT+5,PF)
+      RC(FW,PF) RC(DN,PF) RC(BK,PF) /*   |   */ RC(FW+5,PF) RC(DN+5,PF) RC(BK+5,PF)
+      /*     */ RC(RT,PF) /*             |               */ RC(RT+5,PF)
     >;
   };
 };
-//
-// &i2c0_default {
-//   group1 {
-//     psels = <NRF_PSEL(TWIM_SDA, 0, 6)>
-//           , <NRF_PSEL(TWIM_SCL, 0, 8)>;
-//   };
-// };
-//
-// &i2c0_sleep{
-//   group1 {
-//     psels = <NRF_PSEL(TWIM_SDA, 0, 6)>
-//           , <NRF_PSEL(TWIM_SCL, 0, 8)>;
-//     low-power-enable;
-//   };
-// };
-//
-// &i2c0 {
-//     status = "okay";
-//
-//     oled: ssd1306@3c {
-//         compatible = "solomon,ssd1306fb";
-//         reg = <0x3c>;
-//         width = <128>;
-//         height = <32>;
-//         segment-offset = <0>;
-//         page-offset = <0>;
-//         display-offset = <0>;
-//         multiplex-ratio = <31>;
-//         com-sequential;
-//         // inversion-on;
-//         prechargep = <0x22>;
-//     };
-// };
+
+&pinctrl {
+  i2c0_default: i2c0_default {
+    group1 {
+      psels = <NRF_PSEL(TWIM_SDA, 0, 6)>
+        , <NRF_PSEL(TWIM_SCL, 0, 8)>;
+    };
+  };
+
+  i2c0_sleep: i2c0_sleep {
+    group1 {
+      psels = <NRF_PSEL(TWIM_SDA, 0, 6)>
+        , <NRF_PSEL(TWIM_SCL, 0, 8)>;
+      low-power-enable;
+    };
+  };
+};
+
+&i2c0 {
+  compatible = "nordic,nrf-twi";
+
+  status = "okay";
+
+  pinctrl-0 = <&i2c0_default>;
+  pinctrl-1 = <&i2c0_sleep>;
+  pinctrl-names = "default", "sleep";
+
+  oled: ssd1306@3c {
+    compatible = "solomon,ssd1306fb";
+    reg = <0x3c>;
+    width = <128>;
+    height = <32>;
+    segment-offset = <0>;
+    page-offset = <0>;
+    display-offset = <0>;
+    multiplex-ratio = <31>;
+    com-sequential;
+    // inversion-on;
+    prechargep = <0x22>;
+  };
+};
