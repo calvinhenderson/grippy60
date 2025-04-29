@@ -1,6 +1,6 @@
 #include "grippy60.dtsi"
 
-&default_transform {
-  // Offset 5 rows to shift the right half below the left half
-  row-offset = <5>;
-};
+// &default_transform {
+//   // Offset 5 rows to shift the right half below the left half
+//   row-offset = <5>;
+// };
