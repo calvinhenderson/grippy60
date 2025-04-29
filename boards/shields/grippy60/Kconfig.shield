@@ -6,6 +6,3 @@ config SHIELD_GRIPPY60_LEFT
 
     config ZMK_COMBO_MAX_COMBOS_PER_KEY
         default 32
-
-    config ZMK_COMBO_MAX_KEYS_PER_COMBO
-        default 8
