@@ -67,6 +67,13 @@ BCOMBO(LALT,  &kp LALT,  L_RF_D,     R_RF_D)
 BCOMBO(LCTRL, &kp LCTRL, L_MF_D,     R_MF_D)
 BCOMBO(LGUI,  &kp LGUI,  L_IF_D,     R_IF_D)
 
+BCOMBO(TAB,    &kp TAB,                L_RF_F L_MF_F L_IF_F,             R_IF_F R_MF_F R_RF_F)
+BCOMBO(DEL,    &kp DEL,    L_SHIFT_KEY L_RF_F L_MF_F L_IF_F, R_SHIFT_KEY R_IF_F R_MF_F R_RF_F)
+
+BCOMBO(ENTER,  &kp ENTER,              L_RF_B L_MF_B L_IF_B,             R_IF_B R_MF_B R_RF_B)
+BCOMBO(ESC,    &kp ESC,    L_SHIFT_KEY L_RF_B L_MF_B L_IF_B, R_SHIFT_KEY R_IF_B R_MF_B R_RF_B)
+
+
 // Alpha-keys
 WITH_MOD(S, R, &kp R, &kp LS(R), L_SHIFT_KEY, L_PF_F, R_SHIFT_KEY, R_PF_F)
 WITH_MOD(S, S, &kp S, &kp LS(S), L_SHIFT_KEY, L_RF_F, R_SHIFT_KEY, R_RF_F)
