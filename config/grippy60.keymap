@@ -1,9 +1,6 @@
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/behaviors.h>
-#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
-#include <dt-bindings/zmk/outputs.h>
-
+#include <dt-bindings/zmk/bt.h>
 #include "grippy60.h"
 
 // CONFIG
@@ -25,43 +22,81 @@
   keymap {
     compatible = "zmk,keymap";
 
-    linux_layer {
+    mac_layer {
+      display-name = "MAC";
       bindings = <
 
 	      /* Outer thumb */
-        &none             &none
+              &none             &none
         &none &none &none &none &none &none
-        &none             &none
+              &none             &none
 
 	      /* Inner thumb */
-        &none             &none
+              &none             &none
         &none &none &none &none &none &none
-        &none             &none
+              &none             &none
 
 	      /* Index */
-        &none             &none
+              &none             &none
         &none &none &none &none &none &none
-        &none             &none
+              &none             &none
 
 	      /* Middle */
-        &none             &none
+              &none             &none
         &none &none &none &none &none &none
-        &none             &none
+              &none             &none
 
 	      /* Ring */
-        &none             &none
+              &none             &none
         &none &none &none &none &none &none
-        &none             &none
+              &none             &none
 
 	      /* Pinky */
-        &none             &none
+              &none             &none
         &none &none &none &none &none &none
-        &none             &none
+              &none             &none
+      >;
+    };
+
+    linux_layer {
+      display-name = "LINUX";
+      bindings = <
+
+	      /* Outer thumb */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	      /* Inner thumb */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	      /* Index */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	      /* Middle */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	      /* Ring */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+
+	      /* Pinky */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
       >;
     };
   };
 };
 
-&mt {
-  tapping-term-ms = <TAPPING_TERM_MS>;
+&sk {
+  release-after-ms = <STICKY_TIMEOUT>;
+  lazy;
 };

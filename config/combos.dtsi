@@ -53,19 +53,28 @@
 
 #define L_BSPC_KEY  L_IT_F
 #define R_BSPC_KEY  R_IT_F
+
 #define L_SHIFT_KEY L_IT_B
 #define R_SHIFT_KEY R_IT_B
-#define L_SYM_KEY   L_OT_B
-#define R_SYM_KEY   R_OT_B
+
+#define L_SYM_KEY   L_IT_R
+#define R_SYM_KEY   R_IT_L
+
+#define L_FN_KEY    L_IT_L
+#define R_FN_KEY    R_IT_R
 
 // Mods
-BCOMBO(BSPC,  &kp BSPC,  L_BSPC_KEY,  R_BSPC_KEY)
-BCOMBO(SPACE, &kp SPACE, L_SHIFT_KEY, R_SHIFT_KEY)
+BCOMBO(RESET,  &sys_reset,  L_OT_F L_IT_F,  R_IT_F R_OT_F)
+BCOMBO(BOOT,   &bootloader, L_OT_D L_IT_D, R_IT_D R_OT_D)
 
-BCOMBO(LSHFT, &kp LSHFT, L_PF_D,     R_PF_D)
-BCOMBO(LALT,  &kp LALT,  L_RF_D,     R_RF_D)
-BCOMBO(LCTRL, &kp LCTRL, L_MF_D,     R_MF_D)
-BCOMBO(LGUI,  &kp LGUI,  L_IF_D,     R_IF_D)
+// Mods
+BCOMBO(BSPC,   &kp BSPC,  L_BSPC_KEY,  R_BSPC_KEY)
+BCOMBO(SPACE,  &kp SPACE, L_SHIFT_KEY, R_SHIFT_KEY)
+
+BCOMBO(LSHFT,  &sk LSHFT, L_PF_D,     R_PF_D)
+BCOMBO(LALT,   &sk LALT,  L_RF_D,     R_RF_D)
+BCOMBO(LCTRL,  &sk LCTRL, L_MF_D,     R_MF_D)
+BCOMBO(LGUI,   &sk LGUI,  L_IF_D,     R_IF_D)
 
 BCOMBO(TAB,    &kp TAB,                L_RF_F L_MF_F L_IF_F,             R_IF_F R_MF_F R_RF_F)
 BCOMBO(DEL,    &kp DEL,    L_SHIFT_KEY L_RF_F L_MF_F L_IF_F, R_SHIFT_KEY R_IF_F R_MF_F R_RF_F)
@@ -155,3 +164,22 @@ BCOMBO(N7,     &kp N7,     L_SYM_KEY L_RF_F L_MF_F, R_SYM_KEY R_MF_F R_RF_F)
 BCOMBO(N8,     &kp N8,     L_SYM_KEY L_PF_F L_MF_F, R_SYM_KEY R_MF_F R_PF_F)
 BCOMBO(N9,     &kp N9,     L_SYM_KEY L_PF_F L_RF_F, R_SYM_KEY R_RF_F R_PF_F)
 
+// Function keys
+BCOMBO(F1,     &kp F1,     L_FN_KEY L_RF_B L_IF_B, R_FN_KEY R_IF_B R_RF_B)
+BCOMBO(F2,     &kp F2,     L_FN_KEY L_RF_B L_MF_B, R_FN_KEY R_MF_B R_RF_B)
+BCOMBO(F3,     &kp F3,     L_FN_KEY L_PF_B L_MF_B, R_FN_KEY R_MF_B R_PF_B)
+BCOMBO(F4,     &kp F4,     L_FN_KEY L_PF_B L_RF_B, R_FN_KEY R_RF_B R_PF_B)
+BCOMBO(F5,     &kp F5,     L_FN_KEY L_MF_F L_IF_F, R_FN_KEY L_IF_F L_MF_F)
+BCOMBO(F6,     &kp F6,     L_FN_KEY L_RF_F L_IF_F, R_FN_KEY R_IF_F R_RF_F)
+BCOMBO(F7,     &kp F7,     L_FN_KEY L_RF_F L_MF_F, R_FN_KEY R_MF_F R_RF_F)
+BCOMBO(F8,     &kp F8,     L_FN_KEY L_PF_F L_MF_F, R_FN_KEY R_MF_F R_PF_F)
+BCOMBO(F9,     &kp F9,     L_FN_KEY L_PF_F L_RF_F, R_FN_KEY R_RF_F R_PF_F)
+BCOMBO(F10,    &kp F10,    L_FN_KEY L_MF_B L_IF_B, R_FN_KEY R_IF_B R_MF_B)
+BCOMBO(F11,    &kp F11,    L_FN_KEY L_PF_B L_IF_B, R_FN_KEY R_IF_B R_PF_B)
+BCOMBO(F12,    &kp F12,    L_FN_KEY L_PF_F L_IF_F, R_FN_KEY R_IF_F R_PF_F)
+
+// Bluetooth profiles
+BCOMBO(BT1,    &bt BT_SEL 1, L_BSPC_KEY L_MF_B L_IF_B,               R_BSPC_KEY R_IF_B R_MF_B)
+BCOMBO(BT2,    &bt BT_SEL 2, L_BSPC_KEY L_RF_B L_MF_B,               R_BSPC_KEY R_MF_B R_RF_B)
+BCOMBO(BT3,    &bt BT_SEL 3, L_BSPC_KEY L_PF_B L_RF_B,               R_BSPC_KEY R_RF_B R_PF_B)
+BCOMBO(BT_CLR, &bt BT_CLR,   L_BSPC_KEY L_PF_B L_RF_B L_MF_B L_IF_B, R_BSPC_KEY R_IF_B R_MF_B R_RF_B R_PF_B)

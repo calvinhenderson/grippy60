@@ -26,15 +26,6 @@
     wakeup-source;
 
 
-    col-gpios
-      = <&pro_micro  6 GPIO_ACTIVE_HIGH> // OUTER THUMB
-      , <&pro_micro  5 GPIO_ACTIVE_HIGH> // INNER THUMB
-      , <&pro_micro  4 GPIO_ACTIVE_HIGH> // INDEX FINGER
-      , <&pro_micro  3 GPIO_ACTIVE_HIGH> // MIDDLE FINGER
-      , <&pro_micro  8 GPIO_ACTIVE_HIGH> // RING FINGER
-      , <&pro_micro  7 GPIO_ACTIVE_HIGH> // PINKY FINGER
-      ;
-
     row-gpios
       = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // FW
       , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // LT
@@ -42,6 +33,7 @@
       , <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // RT
       , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // BK
       ;
+
   };
 
   default_transform: keymap_transform0 {
@@ -119,7 +111,7 @@
     display-offset = <0>;
     multiplex-ratio = <31>;
     com-sequential;
-    // inversion-on;
+    inversion-on;
     prechargep = <0x22>;
   };
 };
