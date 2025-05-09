@@ -1,0 +1,79 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+
+#define OT 0 // Outer thumb
+#define IT 1 // Inner thumb
+#define IF 2 // Index finger
+#define MF 3 // Middle finger
+#define RF 4 // Ring finger
+#define PF 5 // Pinky finger
+
+#undef FORW
+#undef RGHT
+#undef BACK
+#undef DOWN
+#undef LEFT
+#define FORW 0 // Forward
+#define RGHT 1 // Right
+#define BACK 2 // Backward
+#define DOWN 3 // Down
+#define LEFT 4 // Left
+
+/ {
+  chosen {
+    zmk,kscan = &kscan0;
+    zmk,matrix_transform = &default_transform;
+  };
+
+  kscan0: kscan0 {
+    compatible = "zmk,kscan-gpio-matrix";
+    diode-direction = "col2row";
+    wakeup-source;
+
+    row-gpios
+      = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // FORW
+      , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // LEFT
+      , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // DOWN
+      , <&pro_micro 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // RGHT
+      , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // BACK
+      ;
+
+  };
+
+  default_transform: keymap_transform0 {
+    compatible = "zmk,matrix-transform";
+    columns = <6>;
+    rows = <5>;
+    map = <
+      /* LEFT                                |        RIGHT  */
+      /* OUTER THUMB                                         */
+      /*       */ RC(LEFT,OT) /*             |               */ RC(LEFT+5,OT)
+      RC(FORW,OT) RC(DOWN,OT) RC(BACK,OT) /* | */ RC(FORW+5,OT) RC(DOWN+5,OT) RC(BACK+5,OT)
+      /*       */ RC(RGHT,OT) /*             |               */ RC(RGHT+5,OT)
+      /*                                     |               */
+      /* INNER THUMB                                         */
+      /*       */ RC(LEFT,IT) /*             |               */ RC(LEFT+5,IT)
+      RC(FORW,IT) RC(DOWN,IT) RC(BACK,IT) /* | */ RC(FORW+5,IT) RC(DOWN+5,IT) RC(BACK+5,IT)
+      /*       */ RC(RGHT,IT) /*             |               */ RC(RGHT+5,IT)
+      /*                                     |               */
+      /* INDEX FINGER                                        */
+      /*       */ RC(LEFT,IF) /*             |               */ RC(LEFT+5,IF)
+      RC(FORW,IF) RC(DOWN,IF) RC(BACK,IF) /* | */ RC(FORW+5,IF) RC(DOWN+5,IF) RC(BACK+5,IF)
+      /*       */ RC(RGHT,IF) /*             |               */ RC(RGHT+5,IF)
+      /*                                     |               */
+      /* MIDDLE FINGER                                       */
+      /*       */ RC(LEFT,MF) /*             |               */ RC(LEFT+5,MF)
+      RC(FORW,MF) RC(DOWN,MF) RC(BACK,MF) /* | */ RC(FORW+5,MF) RC(DOWN+5,MF) RC(BACK+5,MF)
+      /*       */ RC(RGHT,MF) /*             |               */ RC(RGHT+5,MF)
+      /*                                     |               */
+      /* RING FINGER                                         */
+      /*       */ RC(LEFT,RF) /*             |               */ RC(LEFT+5,RF)
+      RC(FORW,RF) RC(DOWN,RF) RC(BACK,RF) /* | */ RC(FORW+5,RF) RC(DOWN+5,RF) RC(BACK+5,RF)
+      /*       */ RC(RGHT,RF) /*             |               */ RC(RGHT+5,RF)
+      /*                                     |               */
+      /* PINKY FINGER                                        */
+      /*       */ RC(LEFT,PF) /*             |               */ RC(LEFT+5,PF)
+      RC(FORW,PF) RC(DOWN,PF) RC(BACK,PF) /* | */ RC(FORW+5,PF) RC(DOWN+5,PF) RC(BACK+5,PF)
+      /*       */ RC(RGHT,PF) /*             |               */ RC(RGHT+5,PF)
+    >;
+  };
+};

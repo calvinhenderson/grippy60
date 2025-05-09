@@ -1,0 +1,43 @@
+# Copyright (c) 2025 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: IMU Mouse behavior
+
+compatible: "zmk,behavior-imu-mouse"
+
+include: zero_param.yaml
+
+properties:
+  sensor:
+    type: phandle
+    required: true
+    description: |
+      The device handle for the configured IMU sensor.
+
+  sensor-axis:
+    type: array
+    required: true
+    description: |
+      Configures the X and Y sensor channels for mouse cursor control.
+      Example:
+      #include <zmk-imu-mouse/config.h>
+      ...
+      sensor-axis: <IMU_AXIS_X (IMU_AXIS_Y | IMU_INVERT)>;
+
+  perform-scrolling:
+    type: boolean
+    description: |
+      Configures whether the behavior controls movement or scrolling.
+
+  scale-multiplier:
+    type: int
+    required: false
+    default: 1
+    description: |
+      The scale factor multiplier for sensitivity
+  scale-divisor:
+    type: int
+    required: false
+    default: 1
+    description: |
+      The scale factor divisor.

@@ -51,17 +51,17 @@
 #undef COMBO_LAYERS
 #define COMBO_LAYERS BASE_LAYERS
 
-#define L_BSPC_KEY  L_IT_F
-#define R_BSPC_KEY  R_IT_F
+#define L_BSPC_KEY  L_OT_F
+#define R_BSPC_KEY  R_OT_F
 
-#define L_SHIFT_KEY L_IT_B
-#define R_SHIFT_KEY R_IT_B
+#define L_SHIFT_KEY L_OT_B
+#define R_SHIFT_KEY R_OT_B
 
-#define L_SYM_KEY   L_IT_R
-#define R_SYM_KEY   R_IT_L
+#define L_SYM_KEY   L_OT_R
+#define R_SYM_KEY   R_OT_L
 
-#define L_FN_KEY    L_IT_L
-#define R_FN_KEY    R_IT_R
+#define L_FN_KEY    L_OT_L
+#define R_FN_KEY    R_OT_R
 
 // Mods
 BCOMBO(RESET,  &sys_reset,  L_OT_F L_IT_F,  R_IT_F R_OT_F)
@@ -120,10 +120,6 @@ BCOMBO(GT,     &kp GT,     L_SYM_KEY L_PF_B, R_SYM_KEY R_PF_B)
 BCOMBO(LBRC,   &kp LBRC,   L_SYM_KEY L_RF_B, R_SYM_KEY R_RF_B)
 BCOMBO(LBKT,   &kp LBKT,   L_SYM_KEY L_MF_B, R_SYM_KEY R_MF_B)
 BCOMBO(LPAR,   &kp LPAR,   L_SYM_KEY L_IF_B, R_SYM_KEY R_IF_B)
-
-BCOMBO(FSLH,   &kp FSLH,               L_RF_F L_MF_B,             R_MF_B R_RF_F)
-BCOMBO(BSLH,   &kp BSLH,   L_SHIFT_KEY L_RF_F L_MF_B, R_SHIFT_KEY R_MF_B R_RF_F)
-BCOMBO(PIPE,   &kp PIPE,   L_SYM_KEY   L_RF_F L_MF_B, R_SYM_KEY   R_MF_B R_RF_F)
 
 BCOMBO(MINUS,  &kp MINUS,              L_RF_B L_MF_F,             R_MF_F R_RF_B)
 BCOMBO(UNDER,  &kp UNDER,  L_SHIFT_KEY L_RF_B L_MF_F, R_SHIFT_KEY R_MF_F R_RF_B)

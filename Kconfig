@@ -1,0 +1,21 @@
+# Kconfig for ZMK IMU Mouse Behavior
+
+menu "IMU Mouse Options"
+
+config ZMK_BEHAVIOR_IMU_MOUSE_ENABLE_TIMER
+    bool "Enable IMU Sensor Polling"
+    default n
+    help
+      Enable this to poll the sensor for data instead of waiting for
+      a sensor trigger callback.
+
+endmenu # IMU Mouse Options
+
+DT_COMPAT_ZMK_BEHAVIOR_IMU_MOUSE := zmk,behavior-imu-mouse
+
+config ZMK_BEHAVIOR_IMU_MOUSE
+    bool "Enable IMU Mouse Behavior"
+    default $(dt_compat_enabled,$(DT_COMPAT_ZMK_BEHAVIOR_IMU_MOUSE))
+    help
+      Enable this behavior to use an IMU (Inertial Measurement Unit)
+      to control the mouse cursor.
