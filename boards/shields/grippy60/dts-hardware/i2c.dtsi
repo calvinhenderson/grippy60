@@ -24,4 +24,13 @@
   pinctrl-0 = <&i2c0_default>;
   pinctrl-1 = <&i2c0_sleep>;
   pinctrl-names = "default", "sleep";
+
+  mpu: mpu6050@68 {
+    compatible = "invensense,mpu6050";
+    status = "okay";
+    friendly-name = "MPU6050";
+    reg = <0x68>;
+    int-gpios = <&pro_micro 9 GPIO_ACTIVE_HIGH>;
+    // smplrt-div = <249>;
+  };
 };

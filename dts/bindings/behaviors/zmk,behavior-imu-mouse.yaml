@@ -5,7 +5,7 @@ description: IMU Mouse behavior
 
 compatible: "zmk,behavior-imu-mouse"
 
-include: zero_param.yaml
+include: one_param.yaml
 
 properties:
   sensor:
@@ -29,15 +29,15 @@ properties:
     description: |
       Configures whether the behavior controls movement or scrolling.
 
-  scale-multiplier:
+  sensitivity-multiplier:
     type: int
     required: false
     default: 1
     description: |
-      The scale factor multiplier for sensitivity
-  scale-divisor:
+      The sensitivity factor multiplier for sensitivity
+  sensitivity-divisor:
     type: int
     required: false
     default: 1
     description: |
-      The scale factor divisor.
+      The sensitivity factor divisor.

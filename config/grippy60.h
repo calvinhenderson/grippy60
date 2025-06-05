@@ -6,9 +6,9 @@
 #define BASE_LAYERS MACOS LINUX
 
 // TIMEOUTS
-#define TIMEOUT_SMALL   80
+#define TIMEOUT_SMALL 80
 #define TIMEOUT_NORMAL 150
-#define TIMEOUT_LONG   250
+#define TIMEOUT_LONG 250
 #define TIMEOUT_XLONG 1500
 
 // Labels for switch directions according to the matrix
@@ -25,8 +25,8 @@
 // Outer thumb
 #define L_OT_F 0
 #define R_OT_F 1
-#define L_OT_L 2
-#define L_OT_D 3
+#define L_OT_D 2
+#define L_OT_L 3
 #define L_OT_R 4
 #define R_OT_L 5
 #define R_OT_D 6

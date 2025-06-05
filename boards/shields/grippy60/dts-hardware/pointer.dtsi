@@ -1,39 +1,14 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
-#include <zmk-imu-mouse/config.h>
+#include <zmk-imu-mouse.h>
 
 / {
-  chosen {
-    zmk,pointer = &pointer;
-  };
-
-  pointer: pointer {
+  imummv: imummv {
     compatible = "zmk,behavior-imu-mouse";
     label = "IMU Mouse Pointer";
-    #binding-cells = <0>;
+    #binding-cells = <1>;
     sensor = <&mpu>;
     sensor-axis = <IMU_AXIS_X IMU_AXIS_Y>;
-    scale-divisor = <100>;
-  };
-
-  scroll: scroll {
-    compatible = "zmk,behavior-imu-mouse";
-    label = "IMU Mouse Scroll";
-    #binding-cells = <0>;
-    sensor = <&mpu>;
-    sensor-axis = <IMU_AXIS_X (IMU_AXIS_Y | IMU_INVERT)>;
-    perform-scrolling;
-    scale-divisor = <100>;
-  };
-};
-
-&i2c0 {
-  mpu: mpu6050@68 {
-    compatible = "invensense,mpu6050";
-    status = "okay";
-    friendly-name = "MPU6050";
-    reg = <0x68>;
-    int-gpios = <&pro_micro 9 GPIO_ACTIVE_HIGH>;
-    // smplrt-div = <249>;
+    sensitivity-multiplier = <1>;
   };
 };

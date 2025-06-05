@@ -10,6 +10,10 @@ if SHIELD_GRIPPY60_LEFT
     config ZMK_USB
         default y
 
+    config ZMK_BLE
+        default y
+
+
     endif
 
 if SHIELD_GRIPPY60_LEFT || SHIELD_GRIPPY60_RIGHT
