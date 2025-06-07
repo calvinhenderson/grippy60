@@ -1,9 +1,14 @@
 #pragma once
 
+#include <dt-bindings/zmk/pointing.h>
+
 // LAYERS
-#define MACOS 0
-#define LINUX 1
-#define BASE_LAYERS MACOS LINUX
+#define LINUX 0
+#define MACOS 1
+#define MOUSE 2
+#define NAV 3
+#define FN 4
+#define BASE_LAYERS LINUX MACOS
 
 // TIMEOUTS
 #define TIMEOUT_SMALL 80

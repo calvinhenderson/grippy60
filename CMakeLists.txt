@@ -1,3 +1,3 @@
-target_sources_ifdef(CONFIG_ZMK_BEHAVIOR_IMU_MOUSE app PRIVATE src/behaviors/behavior_imu_mouse.c)
+target_sources_ifdef(CONFIG_ZMK_BEHAVIOR_IMU_INPUT app PRIVATE src/behaviors/behavior_imu_input.c)
 
 zephyr_include_directories(include)

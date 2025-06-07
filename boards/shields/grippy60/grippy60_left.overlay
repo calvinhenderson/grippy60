@@ -1,5 +1,27 @@
 #include "grippy60.dtsi"
 
+/ {
+  imu_listener: imu_listener {
+    compatible = "zmk,input-listener";
+    status = "okay";
+    device = <&imummv_l>;
+    input-processors = <
+      &zip_xy_scaler 2 3
+      &zip_temp_layer 2 250
+    >;
+  };
+
+  imu_scroll_listener: imu_scroll_listener {
+    compatible = "zmk,input-listener";
+    status = "okay";
+    device = <&imumsc_l>;
+    input-processors = <
+      &zip_xy_scaler 1 10
+      &zip_xy_to_scroll_mapper
+    >;
+  };
+};
+
 &kscan0 {
   col-gpios
     = <&pro_micro  6 GPIO_ACTIVE_HIGH> // OUTER THUMB
@@ -9,4 +31,22 @@
     , <&pro_micro  8 GPIO_ACTIVE_HIGH> // RING FINGER
     , <&pro_micro  7 GPIO_ACTIVE_HIGH> // PINKY FINGER
     ;
+};
+
+&usbd {
+  status = "okay";
+};
+
+&imummv_l {
+  status = "okay";
+  sensor = <&mpu>;
+  axis-x = <(IMU_AXIS_Y)>;
+  axis-y = <(IMU_AXIS_X)>;
+};
+
+&imumsc_l {
+  status = "okay";
+  sensor = <&mpu>;
+  axis-x = <(IMU_AXIS_Y | IMU_INVERT)>;
+  axis-y = <(IMU_AXIS_X | IMU_INVERT)>;
 };

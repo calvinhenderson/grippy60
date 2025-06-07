@@ -1,14 +1,48 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
-#include <zmk-imu-mouse.h>
+#include <zmk-imu-input.h>
 
 / {
-  imummv: imummv {
-    compatible = "zmk,behavior-imu-mouse";
-    label = "IMU Mouse Pointer";
-    #binding-cells = <1>;
-    sensor = <&mpu>;
-    sensor-axis = <IMU_AXIS_X IMU_AXIS_Y>;
-    sensitivity-multiplier = <1>;
+  // Mouse Movement
+  imummv_l: imummv_l {
+    compatible = "zmk,behavior-imu-input";
+    status = "disabled";
+    #binding-cells = <0>;
+  };
+
+  imummv_r: imummv_r {
+    compatible = "zmk,behavior-imu-input";
+    status = "disabled";
+    #binding-cells = <0>;
+  };
+
+  // Mouse Scrollling
+  imumsc_l: imumsc_l {
+    compatible = "zmk,behavior-imu-input";
+    status = "disabled";
+    #binding-cells = <0>;
+  };
+
+  // Mouse Scrollling
+  imumsc_r: imumsc_r {
+    compatible = "zmk,behavior-imu-input";
+    status = "disabled";
+    #binding-cells = <0>;
   };
 };
+
+&zip_temp_layer {
+  status = "okay";
+  require-prior-idle-ms = <0>;
+};
+
+&i2c0 {
+  mpu: mpu6050@68 {
+    compatible = "invensense,mpu6050";
+    status = "okay";
+    friendly-name = "MPU6050";
+    reg = <0x68>;
+  };
+};
+
+

@@ -2,29 +2,33 @@ if SHIELD_GRIPPY60_LEFT
 
     # Name must be less than 16 characters long!
     config ZMK_KEYBOARD_NAME
-        default "Grippy 60"
+        default "Grippy 60 Left"
 
-    config ZMK_SPLIT_ROLE_CENTRAL
-        default y
+    # config ZMK_SPLIT_ROLE_CENTRAL
+    #     default y
 
-    config ZMK_USB
-        default y
+    # config ZMK_USB
+    #     default y
 
-    config ZMK_BLE
-        default y
+    endif
 
+if SHIELD_GRIPPY60_RIGHT
+
+    # Name must be less than 16 characters long!
+    config ZMK_KEYBOARD_NAME
+        default "Grippy 60 Right"
 
     endif
 
 if SHIELD_GRIPPY60_LEFT || SHIELD_GRIPPY60_RIGHT
 
-    config ZMK_SPLIT
-        default y
-
     config ZMK_BLE
         default y
 
-    config ZMK_POINTING
+    # config ZMK_SPLIT
+    #     default y
+
+    config ZMK_USB
         default y
 
     endif

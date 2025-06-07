@@ -1,10 +1,39 @@
-# Kconfig for ZMK IMU Mouse Behavior
+# Kconfig for ZMK IMU Input Device
 
-DT_COMPAT_ZMK_BEHAVIOR_IMU_MOUSE := zmk,behavior-imu-mouse
+DT_COMPAT_ZMK_BEHAVIOR_IMU_INPUT := zmk,behavior-imu-input
 
-config ZMK_BEHAVIOR_IMU_MOUSE
-    bool "Enable IMU Mouse Behavior"
-    default $(dt_compat_enabled,$(DT_COMPAT_ZMK_BEHAVIOR_IMU_MOUSE))
+menuconfig ZMK_BEHAVIOR_IMU_INPUT
+    bool "ZMK IMU input pupport"
+    default $(dt_compat_enabled,$(DT_COMPAT_ZMK_BEHAVIOR_IMU_INPUT))
     help
-      Enable this behavior to use an IMU (Inertial Measurement Unit)
-      to control the mouse cursor.
+      Enable support for using an Inertial Measurement Unit (IMU)
+      as a pointing device in ZMK. This allows for mouse-like
+      movement based on IMU sensor data.
+
+if ZMK_BEHAVIOR_IMU_INPUT
+    config ZMK_BEHAVIOR_IMU_INPUT_INIT_PRIORITY
+        int "IMU input driver initialization priority"
+        default INPUT_INIT_PRIORITY
+        range 0 99
+        help
+            Sets the initialization priority for the IMU input behavior.
+            Higher numbers mean lower priority (initialized later).
+            Sensors typically initialize around 60-70.
+            Refer to Zephyr's documentation on initialization priorities
+            for more details.
+
+    config ZMK_BEHAVIOR_IMU_INPUT_AVERAGE_READINGS
+        int "IMU input driver average readings"
+        default 30
+        range 1 255
+        help
+            Sets the number of readings to take before averaging the results
+
+    config ZMK_BEHAVIOR_IMU_INPUT_DATA_RATE
+        int "IMU input driver polling rate"
+        default 20
+        range 1 1000
+        help
+            Sets the polling rate on the driver to N reads per second (in hertz).
+endif
+

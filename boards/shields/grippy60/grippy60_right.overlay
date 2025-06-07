@@ -1,15 +1,5 @@
 #include "grippy60.dtsi"
 
-&oled {
-  segment-remap;
-  com-invdir;
-};
-
-&default_transform {
-  // Offset 5 rows to shift the right half below the left half
-  row-offset = <5>;
-};
-
 &kscan0 {
   col-gpios
     = <&pro_micro  7 GPIO_ACTIVE_HIGH> // OUTER THUMB
@@ -20,3 +10,50 @@
     , <&pro_micro  8 GPIO_ACTIVE_HIGH> // PINKY FINGER
     ;
 };
+
+&default_transform {
+  // Offset 5 rows to shift the right half below the left half
+  row-offset = <5>;
+};
+
+&oled {
+  segment-remap;
+  com-invdir;
+};
+
+&imummv_r {
+  status = "okay";
+  sensor = <&mpu>;
+  axis-x = <(IMU_AXIS_Y | IMU_INVERT)>;
+  axis-y = <(IMU_AXIS_X | IMU_INVERT)>;
+};
+
+&imumsc_r {
+  status = "okay";
+  sensor = <&mpu>;
+  axis-x = <(IMU_AXIS_Y | IMU_INVERT)>;
+  axis-y = <(IMU_AXIS_X)>;
+};
+
+/ {
+  imu_listener: imu_listener {
+    compatible = "zmk,input-listener";
+    status = "okay";
+    device = <&imummv_r>;
+    input-processors = <
+      &zip_xy_scaler 2 3
+      &zip_temp_layer 2 250
+    >;
+  };
+
+  imu_scroll_listener: imu_scroll_listener {
+    compatible = "zmk,input-listener";
+    status = "okay";
+    device = <&imumsc_r>;
+    input-processors = <
+      &zip_xy_scaler 1 10
+      &zip_xy_to_scroll_mapper
+    >;
+  };
+};
+

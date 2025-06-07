@@ -12,6 +12,18 @@
 
 / {
   behaviors {
+    layer_on: toggle_on_layer {
+      compatible = "zmk,behavior-toggle-layer";
+      #binding-cells = <1>;
+      display-name = "Toggle Layer On";
+      toggle-mode = "on";
+    };
+    layer_off: toggle_off_layer {
+      compatible = "zmk,behavior-toggle-layer";
+      #binding-cells = <1>;
+      display-name = "Toggle Layer Off";
+      toggle-mode = "off";
+    };
   };
 
   combos {
@@ -22,35 +34,34 @@
   keymap {
     compatible = "zmk,keymap";
 
-    mac_layer {
-      display-name = "MAC";
+    /* We define layers here, but they are all unassigned.
+     * Instead, I choose to use combos for assigning keys
+     * with the exception of imu behavior since it is
+     * source-specific.
+     */
+    linux {
+      display-name = "linux";
       bindings = <
-
 	      /* Outer thumb */
-              &none             &none
+              &imumsc_l         &imumsc_r
         &none &none &none &none &none &none
-              &none             &none
-
+              &imummv_l         &imummv_r
 	      /* Inner thumb */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
-
 	      /* Index */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
-
 	      /* Middle */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
-
 	      /* Ring */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
-
 	      /* Pinky */
               &none             &none
         &none &none &none &none &none &none
@@ -58,35 +69,119 @@
       >;
     };
 
-    linux_layer {
-      display-name = "LINUX";
+    mac {
+      display-name = "mac/ios";
       bindings = <
-
 	      /* Outer thumb */
-              &none             &none
+              &imumsc_l         &imumsc_r
         &none &none &none &none &none &none
-              &none             &none
-
+              &imummv_l         &imummv_r
 	      /* Inner thumb */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
-
 	      /* Index */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
-
 	      /* Middle */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
-
 	      /* Ring */
               &none             &none
         &none &none &none &none &none &none
               &none             &none
+	      /* Pinky */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+      >;
+    };
 
+    mouse {
+      display-name = "mouse";
+      bindings = <
+	      /* Outer thumb */
+              &imumsc_l         &imumsc_r
+        &none &none &none &none &none &none
+              &imummv_l         &imummv_r
+	      /* Inner thumb */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Index */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Middle */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Ring */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Pinky */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+      >;
+    };
+
+    navigation {
+      display-name = "nav";
+      bindings = <
+	      /* Outer thumb */
+              &imumsc_l         &imumsc_r
+        &none &none &none &none &none &none
+              &imummv_l         &imummv_r
+	      /* Inner thumb */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Index */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Middle */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Ring */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Pinky */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+      >;
+    };
+
+    function {
+      display-name = "fn";
+      bindings = <
+	      /* Outer thumb */
+              &imumsc_l         &imumsc_r
+        &none &none &none &none &none &none
+              &imummv_l         &imummv_r
+	      /* Inner thumb */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Index */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Middle */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
+	      /* Ring */
+              &none             &none
+        &none &none &none &none &none &none
+              &none             &none
 	      /* Pinky */
               &none             &none
         &none &none &none &none &none &none
