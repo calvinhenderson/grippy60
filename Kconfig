@@ -21,13 +21,14 @@ if ZMK_BEHAVIOR_IMU_INPUT
             Sensors typically initialize around 60-70.
             Refer to Zephyr's documentation on initialization priorities
             for more details.
-
-    config ZMK_BEHAVIOR_IMU_INPUT_AVERAGE_READINGS
-        int "IMU input driver average readings"
-        default 30
-        range 1 255
+    config ZMK_BEHAVIOR_IMU_INPUT_CALIBRATION_PERIOD
+        int "IMU input driver calibration period"
+        default 15
+        range 0 255
         help
-            Sets the number of readings to take before averaging the results
+            Sets the calibration period (in cycles) for the imu sensor.
+            For example, a value of 20 will average the first 20 values
+            and negate them from any continued sensor values.
 
     config ZMK_BEHAVIOR_IMU_INPUT_DATA_RATE
         int "IMU input driver polling rate"

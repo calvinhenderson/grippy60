@@ -2,29 +2,35 @@ config SHIELD_GRIPPY60_LEFT
     def_bool $(shields_list_contains,grippy60_left)
 
     config ZMK_COMBO_MAX_PRESSED_COMBOS
-        default 8
+        default 4
 
     config ZMK_COMBO_MAX_COMBOS_PER_KEY
-        default 32
+        default 100
 
     config MAIN_STACK_SIZE
-        default 2048
+        default 4096
 
     config INPUT_THREAD_STACK_SIZE
-        default 2048
+        default 4096
 
     config SYSTEM_WORKQUEUE_STACK_SIZE
-        default 2048
+        default 4096
 
 config SHIELD_GRIPPY60_RIGHT
     def_bool $(shields_list_contains,grippy60_right)
 
+    config ZMK_COMBO_MAX_PRESSED_COMBOS
+        default 4
+
+    config ZMK_COMBO_MAX_COMBOS_PER_KEY
+        default 100
+
     config MAIN_STACK_SIZE
-        default 2048
+        default 4096
 
     config INPUT_THREAD_STACK_SIZE
-        default 2048
+        default 4096
 
     config SYSTEM_WORKQUEUE_STACK_SIZE
-        default 2048
+        default 4096
 

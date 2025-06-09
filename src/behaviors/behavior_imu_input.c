@@ -1,14 +1,14 @@
 #include "behavior_imu_input.h"
-#include "zephyr/kernel.h"
-
-#define EWMA_ALPHA_SCALE 0.95
-#define EWMA_ALPHA_DIVISOR (1.0 - EWMA_ALPHA_SCALE)
-#define DEGREE_PER_RADIAN 57.29577
 
 #define DT_DRV_COMPAT zmk_behavior_imu_input
-LOG_MODULE_REGISTER(DT_DRV_COMPAT, CONFIG_ZMK_LOG_LEVEL);
 
-#define EWMA(new, prev) ((EWMA_ALPHA_SCALE * new) + (EWMA_ALPHA_DIVISOR * prev))
+#define DEGREE_PER_RADIAN 57.29577
+#define DATA_RATE CONFIG_ZMK_BEHAVIOR_IMU_INPUT_DATA_RATE
+#define CALIBRATION_PERIOD CONFIG_ZMK_BEHAVIOR_IMU_INPUT_CALIBRATION_PERIOD
+
+#define EWMA(alpha, new, prev) ((alpha * new) + ((1.0 - alpha) * prev))
+
+LOG_MODULE_REGISTER(DT_DRV_COMPAT, CONFIG_ZMK_LOG_LEVEL);
 
 static inline void value_for_axis(const struct device *sensor, uint8_t axis, float *accel,
                                   float *gyro) {
@@ -38,6 +38,22 @@ static inline void value_for_axis(const struct device *sensor, uint8_t axis, flo
     }
 }
 
+static int16_t calculate_axis_delta(struct imu_input_data *state, const struct device *sensor,
+                                    struct imu_input_data_axis *data, uint8_t axis,
+                                    uint8_t threshold) {
+    // get current sensor values
+    value_for_axis(sensor, axis, &state->accel, &state->gyro);
+
+    data->prev = data->avg;
+    data->avg = EWMA(0.70, EWMA(0.98, state->gyro, state->accel), data->prev);
+    data->first += data->avg * (state->readings <= CALIBRATION_PERIOD);
+
+    // return movement delta
+    data->delta = data->avg - (data->first / state->readings);
+
+    return data->delta * (data->delta > threshold || data->delta < -threshold);
+}
+
 static void behavior_imu_input_process_data(struct imu_input_data *state,
                                             const struct device *sensor) {
     const struct imu_input_config *config = state->self->config;
@@ -54,33 +70,16 @@ static void behavior_imu_input_process_data(struct imu_input_data *state,
         return;
     }
 
-    // get axis values based on device tree configuration
-    float accelx = 0, accely = 0;
-    float gyrox = 0, gyroy = 0;
+    // update the number of readings
+    state->readings += 1 * (state->readings <= CALIBRATION_PERIOD);
 
-    value_for_axis(sensor, config->axis_x, &accelx, &gyrox);
-    value_for_axis(sensor, config->axis_y, &accely, &gyroy);
+    int16_t delta =
+        calculate_axis_delta(state, config->sensor, &state->x, config->axis_x, config->threshold_x);
+    input_report_rel(state->self, INPUT_REL_X, delta, false, K_FOREVER);
 
-    state->avg.prev_x = state->avg.x;
-    state->avg.prev_y = state->avg.y;
-
-    state->avg.x = EWMA(EWMA(gyrox, accelx), state->avg.prev_x);
-    state->avg.y = EWMA(EWMA(gyroy, accely), state->avg.prev_y);
-
-    if (state->avg.readings >= CONFIG_ZMK_BEHAVIOR_IMU_INPUT_AVERAGE_READINGS) {
-        if (state->avg.readings == CONFIG_ZMK_BEHAVIOR_IMU_INPUT_AVERAGE_READINGS) {
-            state->avg.first_x = state->avg.x;
-            state->avg.first_y = state->avg.y;
-            state->avg.readings++;
-        }
-        // report the averaged movement deltas
-        input_report_rel(state->self, INPUT_REL_X, state->avg.x - state->avg.first_x, false,
-                         K_FOREVER);
-        input_report_rel(state->self, INPUT_REL_Y, state->avg.y - state->avg.first_y, true,
-                         K_FOREVER);
-    } else {
-        state->avg.readings++;
-    }
+    delta =
+        calculate_axis_delta(state, config->sensor, &state->y, config->axis_y, config->threshold_x);
+    input_report_rel(state->self, INPUT_REL_Y, delta, true, K_FOREVER);
 }
 
 static void behavior_imu_input_work_handler(struct k_work *work) {
@@ -119,10 +118,12 @@ static int on_behavior_imu_input_pressed(struct zmk_behavior_binding *binding,
     const struct device *self = zmk_behavior_get_binding(binding->behavior_dev);
     struct imu_input_data *state = self->data;
 
-    memset(&state->avg, 0, sizeof(struct imu_input_data_average));
-    k_timer_start(&state->timer, K_MSEC(0), K_MSEC(CONFIG_ZMK_BEHAVIOR_IMU_INPUT_DATA_RATE));
+    state->readings = 0;
+    memset(&state->x, 0, sizeof(struct imu_input_data_axis));
+    memset(&state->y, 0, sizeof(struct imu_input_data_axis));
+    k_timer_start(&state->timer, K_MSEC(0), K_MSEC(DATA_RATE));
 
-    LOG_DBG("timer started for %s", state->self->name);
+    LOG_DBG("work queue started for %s", state->self->name);
 
     return ZMK_BEHAVIOR_OPAQUE;
 }
@@ -133,7 +134,7 @@ static int on_behavior_imu_input_released(struct zmk_behavior_binding *binding,
     struct imu_input_data *state = self->data;
 
     k_timer_stop(&state->timer);
-    LOG_DBG("timer stopped for %s", state->self->name);
+    LOG_DBG("work queue stopped for %s", state->self->name);
 
     return ZMK_BEHAVIOR_OPAQUE;
 }
@@ -150,6 +151,8 @@ const struct behavior_driver_api behavior_imu_input_driver_api = {
         .sensor = DEVICE_DT_GET(DT_INST_PROP(n, sensor)),                                          \
         .axis_x = (uint8_t)(DT_INST_PROP(n, axis_x) & 0xf),                                        \
         .axis_y = (uint8_t)(DT_INST_PROP(n, axis_y) & 0xf),                                        \
+        .threshold_x = (uint8_t)(DT_INST_PROP(n, threshold_x) & 0xf),                              \
+        .threshold_y = (uint8_t)(DT_INST_PROP(n, threshold_y) & 0xf),                              \
     };                                                                                             \
                                                                                                    \
     static struct imu_input_data behavior_imu_input_data_##n = {};                                 \

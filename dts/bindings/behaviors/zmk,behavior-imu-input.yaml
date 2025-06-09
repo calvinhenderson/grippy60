@@ -32,3 +32,15 @@ properties:
       #include <zmk-imu-mouse/config.h>
       ...
       axis-y: <IMU_AXIS_Y | IMU_INVERT>;
+  threshold-x:
+    type: int
+    required: false
+    default: 0
+    description: |
+      The movement threshold for the x-axis.
+  threshold-y:
+    type: int
+    required: false
+    default: 0
+    description: |
+      The movement threshold for the x-axis.

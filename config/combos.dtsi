@@ -69,8 +69,8 @@ BCOMBO(BOOT,   &bootloader, L_OT_D L_IT_D, R_IT_D R_OT_D)
 #define COMBO_LAYERS FN
 
 // Set base system layer
-BCOMBO(TO_MACOS, &layer_on  MACOS, L_MF_F, R_MF_F)
-BCOMBO(TO_LINUX, &layer_off MACOS, L_IF_F, R_IF_F)
+BCOMBO(TO_MACOS, &layer_on  MACOS, L_PF_F, R_PF_F)
+BCOMBO(TO_LINUX, &layer_off MACOS, L_PF_B, R_PF_B)
 
 // Bluetooth profiles
 BCOMBO(BT0,    &bt BT_SEL 0, L_RF_B L_IF_B, R_IF_B R_RF_B)
@@ -87,11 +87,11 @@ BCOMBO(BT_CLR, &bt BT_CLR,   L_MF_B L_IF_B, R_IF_B R_MF_B)
 
 BCOMBO(BSPC,   &kp BSPC, L_BSPC_KEY, R_BSPC_KEY)
 
-BCOMBO(HYPER,  &sk HYPER, L_OT_L,     R_OT_R)
-BCOMBO(LSHFT,  &sk LSHFT, L_PF_D,     R_PF_D)
-BCOMBO(LALT,   &sk LALT,  L_RF_D,     R_RF_D)
-BCOMBO(LCTRL,  &sk LCTRL, L_MF_D,     R_MF_D)
-BCOMBO(LGUI,   &sk LGUI,  L_IF_D,     R_IF_D)
+BCOMBO(HYPER,  &kp HYPER, L_OT_L,     R_OT_R)
+BCOMBO(LSHFT,  &kp LSHFT, L_PF_D,     R_PF_D)
+BCOMBO(LALT,   &kp LALT,  L_RF_D,     R_RF_D)
+BCOMBO(LCTRL,  &kp LCTRL, L_MF_D,     R_MF_D)
+BCOMBO(LGUI,   &kp LGUI,  L_IF_D,     R_IF_D)
 
 BCOMBO(TAB,    &kp TAB,                L_RF_F L_MF_F L_IF_F,             R_IF_F R_MF_F R_RF_F)
 BCOMBO(DEL,    &kp DEL,    L_SHIFT_KEY L_RF_F L_MF_F L_IF_F, R_SHIFT_KEY R_IF_F R_MF_F R_RF_F)
@@ -114,7 +114,7 @@ WITH_MOD(S_O, O, &kp O, &kp LS(O), L_SHIFT_KEY, L_RF_B,        R_SHIFT_KEY, R_RF
 WITH_MOD(S_T, T, &kp T, &kp LS(T), L_SHIFT_KEY, L_MF_B,        R_SHIFT_KEY, R_MF_B)
 WITH_MOD(S_E, E, &kp E, &kp LS(E), L_SHIFT_KEY, L_IF_B,        R_SHIFT_KEY, R_IF_B)
 WITH_MOD(S_B, B, &kp B, &kp LS(B), L_SHIFT_KEY, L_PF_F L_RF_F, R_SHIFT_KEY, R_RF_F R_PF_F)
-WITH_MOD(S_Y, Y, &kp Y, &kp LS(Y), L_SHIFT_KEY, L_MF_F L_IF_F, R_SHIFT_KEY, L_IF_F L_MF_F)
+WITH_MOD(S_Y, Y, &kp Y, &kp LS(Y), L_SHIFT_KEY, L_MF_F L_IF_F, R_SHIFT_KEY, R_IF_F R_MF_F)
 WITH_MOD(S_L, L, &kp L, &kp LS(L), L_SHIFT_KEY, L_PF_B L_RF_B, R_SHIFT_KEY, R_RF_B R_PF_B)
 WITH_MOD(S_H, H, &kp H, &kp LS(H), L_SHIFT_KEY, L_MF_B L_IF_B, R_SHIFT_KEY, R_IF_B R_MF_B)
 WITH_MOD(S_P, P, &kp P, &kp LS(P), L_SHIFT_KEY, L_RF_F L_MF_F, R_SHIFT_KEY, R_MF_F R_RF_F)
@@ -146,6 +146,10 @@ BCOMBO(GT,     &kp GT,     L_SYM_KEY L_PF_B, R_SYM_KEY R_PF_B)
 BCOMBO(LBRC,   &kp LBRC,   L_SYM_KEY L_RF_B, R_SYM_KEY R_RF_B)
 BCOMBO(LBKT,   &kp LBKT,   L_SYM_KEY L_MF_B, R_SYM_KEY R_MF_B)
 BCOMBO(LPAR,   &kp LPAR,   L_SYM_KEY L_IF_B, R_SYM_KEY R_IF_B)
+
+BCOMBO(FSLH,   &kp FSLH,               L_RF_F L_MF_B,             R_MF_B R_RF_F)
+BCOMBO(BSLH,   &kp BSLH,   L_SHIFT_KEY L_RF_F L_MF_B, R_SHIFT_KEY R_MF_B R_RF_F)
+BCOMBO(PIPE,   &kp PIPE,   L_SYM_KEY   L_RF_F L_MF_B, R_SYM_KEY   R_MF_B R_RF_F)
 
 BCOMBO(MINUS,  &kp MINUS,              L_RF_B L_MF_F,             R_MF_F R_RF_B)
 BCOMBO(UNDER,  &kp UNDER,  L_SHIFT_KEY L_RF_B L_MF_F, R_SHIFT_KEY R_MF_F R_RF_B)
@@ -256,5 +260,27 @@ BCOMBO(L_PASTE, &kp LC(V), L_MF_R, R_MF_L)
 BCOMBO(M_COPY,  &kp LG(C), L_IF_R, R_IF_L)
 BCOMBO(M_CUT,   &kp LG(X), L_IF_L, R_IF_R)
 BCOMBO(M_PASTE, &kp LG(V), L_MF_R, R_MF_L)
+
+// }}}
+// {{{ Media
+
+#undef COMBO_LAYERS
+#define COMBO_LAYERS FN
+
+// Brightness
+BCOMBO(BRIU, &kp C_BRI_UP, L_IF_F, R_IF_F)
+BCOMBO(BRID, &kp C_BRI_DN, L_IF_B, R_IF_B)
+
+// Volume control
+BCOMBO(VOLU, &kp C_VOL_UP, L_MF_F, R_MF_F)
+BCOMBO(MUTE, &kp C_MUTE,   L_MF_D, R_MF_D)
+BCOMBO(VOLD, &kp C_VOL_DN, L_MF_B, R_MF_B)
+
+// Playback control
+BCOMBO(NEXT, &kp C_NEXT,   L_RF_F, R_RF_F)
+BCOMBO(RWND, &kp C_RW,     L_RF_L, R_RF_L)
+BCOMBO(PLAY, &kp C_PP,     L_RF_D, R_RF_D)
+BCOMBO(FSFW, &kp C_FF,     L_RF_R, R_RF_R)
+BCOMBO(PREV, &kp C_PREV,   L_RF_B, R_RF_B)
 
 // }}}
