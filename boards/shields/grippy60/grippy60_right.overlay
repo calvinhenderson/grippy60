@@ -41,7 +41,7 @@
     status = "okay";
     device = <&imummv_r>;
     input-processors = <
-      &zip_xy_scaler 1 4
+      &zip_xy_scaler 1 2
       &zip_temp_layer 2 250
     >;
   };

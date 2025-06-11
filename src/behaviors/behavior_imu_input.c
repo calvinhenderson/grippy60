@@ -45,7 +45,7 @@ static int16_t calculate_axis_delta(struct imu_input_data *state, const struct d
     value_for_axis(sensor, axis, &state->accel, &state->gyro);
 
     data->prev = data->avg;
-    data->avg = EWMA(0.70, EWMA(0.98, state->gyro, state->accel), data->prev);
+    data->avg = EWMA(0.70, EWMA(0.95, state->gyro, state->accel), data->prev);
     data->first += data->avg * (state->readings <= CALIBRATION_PERIOD);
 
     // return movement delta
