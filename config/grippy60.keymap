@@ -24,6 +24,14 @@
       display-name = "Toggle Layer Off";
       toggle-mode = "off";
     };
+
+    ht: ht {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      tapping-term-ms = <TIMEOUT_NORMAL>;
+      display-name = "Hold-Tap";
+      bindings = <&kp>, <&kp>;
+    };
   };
 
   combos {
@@ -46,29 +54,13 @@
               &imumsc_l         &imumsc_r
         &none &none &none &none &none &none
               &imummv_l         &imummv_r
-	      /* Inner thumb */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Index */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Middle */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Ring */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Pinky */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
+	      /* Inner thumb */ SWITCH_BLANK
+	      /* Index       */ SWITCH_BLANK
+	      /* Middle      */ SWITCH_BLANK
+	      /* Ring        */ SWITCH_BLANK
+	      /* Pinky       */ SWITCH_BLANK
       >;
     };
-
     mac {
       display-name = "mac/ios";
       bindings = <
@@ -76,26 +68,11 @@
               &imumsc_l         &imumsc_r
         &none &none &none &none &none &none
               &imummv_l         &imummv_r
-	      /* Inner thumb */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Index */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Middle */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Ring */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Pinky */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
+	      /* Inner thumb */ SWITCH_BLANK
+	      /* Index       */ SWITCH_BLANK
+	      /* Middle      */ SWITCH_BLANK
+	      /* Ring        */ SWITCH_BLANK
+	      /* Pinky       */ SWITCH_BLANK
       >;
     };
 
@@ -106,26 +83,11 @@
               &imumsc_l         &imumsc_r
         &none &none &none &none &none &none
               &imummv_l         &imummv_r
-	      /* Inner thumb */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Index */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Middle */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Ring */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Pinky */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
+	      /* Inner thumb */ SWITCH_BLANK
+	      /* Index       */ SWITCH_BLANK
+	      /* Middle      */ SWITCH_BLANK
+	      /* Ring        */ SWITCH_BLANK
+	      /* Pinky       */ SWITCH_BLANK
       >;
     };
 
@@ -136,26 +98,11 @@
               &imumsc_l         &imumsc_r
         &none &none &none &none &none &none
               &imummv_l         &imummv_r
-	      /* Inner thumb */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Index */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Middle */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Ring */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Pinky */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
+	      /* Inner thumb */ SWITCH_BLANK
+	      /* Index       */ SWITCH_BLANK
+	      /* Middle      */ SWITCH_BLANK
+	      /* Ring        */ SWITCH_BLANK
+	      /* Pinky       */ SWITCH_BLANK
       >;
     };
 
@@ -166,29 +113,18 @@
               &imumsc_l         &imumsc_r
         &none &none &none &none &none &none
               &imummv_l         &imummv_r
-	      /* Inner thumb */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Index */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Middle */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Ring */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
-	      /* Pinky */
-              &none             &none
-        &none &none &none &none &none &none
-              &none             &none
+	      /* Inner thumb */ SWITCH_BLANK
+	      /* Index       */ SWITCH_BLANK
+	      /* Middle      */ SWITCH_BLANK
+	      /* Ring        */ SWITCH_BLANK
+	      /* Pinky       */ SWITCH_BLANK
       >;
     };
   };
+};
+
+&lt {
+    quick-tap-ms = <TIMEOUT_NORMAL>;
 };
 
 &sk {

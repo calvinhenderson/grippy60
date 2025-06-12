@@ -47,7 +47,7 @@
 #define R_FN_KEY    R_IT_R
 
 #define L_FN2_KEY   L_IT_R
-#define R_FN2_KEY   L_IT_L
+#define R_FN2_KEY   R_IT_L
 
 // }}}
 // {{{ Layers
@@ -88,16 +88,17 @@ BCOMBO(BT_CLR, &bt BT_CLR,   L_MF_B L_IF_B, R_IF_B R_MF_B)
 #undef COMBO_LAYERS
 #define COMBO_LAYERS BASE_LAYERS
 
+#define CAPS_SHIFT &ht CAPS LSHFT
+
 BCOMBO(BSPC,   &kp BSPC,    L_BSPC_KEY, R_BSPC_KEY)
 BCOMBO(DEL,    &kp DEL,     L_FN_KEY,   R_FN_KEY)
-BCOMBO(REPEAT, &key_repeat, L_FN2_KEY,  R_FN2_KEY)
+BCOMBO(TAB,    &kp TAB,     L_FN2_KEY,  R_FN2_KEY)
 BCOMBO(HYPER,  &kp HYPER,   L_OT_L,     R_OT_R)
-BCOMBO(LSHFT,  &kp LSHFT,   L_PF_D,     R_PF_D)
+BCOMBO(LSHFT,  CAPS_SHIFT,  L_PF_D,     R_PF_D)
 BCOMBO(LALT,   &kp LALT,    L_RF_D,     R_RF_D)
 BCOMBO(LCTRL,  &kp LCTRL,   L_MF_D,     R_MF_D)
 BCOMBO(LGUI,   &kp LGUI,    L_IF_D,     R_IF_D)
 
-BCOMBO(TAB,    &kp TAB,                L_RF_F L_MF_F L_IF_F,             R_IF_F R_MF_F R_RF_F)
 BCOMBO(ENTER,  &kp ENTER,              L_RF_B L_MF_B L_IF_B,             R_IF_B R_MF_B R_RF_B)
 BCOMBO(ESC,    &kp ESC,    L_SHIFT_KEY L_RF_B L_MF_B L_IF_B, R_SHIFT_KEY R_IF_B R_MF_B R_RF_B)
 BCOMBO(CAPS,   &kp CAPS,   L_SHIFT_KEY L_PF_D,               R_SHIFT_KEY R_PF_D)
@@ -141,11 +142,11 @@ WITH_MOD(S_W, W, &kp W, &kp LS(W), L_SHIFT_KEY, L_PF_B L_IF_F, R_SHIFT_KEY, R_IF
 #undef COMBO_LAYERS
 #define COMBO_LAYERS BASE_LAYERS
 
-BCOMBO(LT,     &kp LT,     L_SYM_KEY L_PF_F, R_SYM_KEY R_PF_F)
+BCOMBO(GT,     &kp GT,     L_SYM_KEY L_PF_F, R_SYM_KEY R_PF_F)
 BCOMBO(RBRC,   &kp RBRC,   L_SYM_KEY L_RF_F, R_SYM_KEY R_RF_F)
 BCOMBO(RBKT,   &kp RBKT,   L_SYM_KEY L_MF_F, R_SYM_KEY R_MF_F)
 BCOMBO(RPAR,   &kp RPAR,   L_SYM_KEY L_IF_F, R_SYM_KEY R_IF_F)
-BCOMBO(GT,     &kp GT,     L_SYM_KEY L_PF_B, R_SYM_KEY R_PF_B)
+BCOMBO(LT,     &kp LT,     L_SYM_KEY L_PF_B, R_SYM_KEY R_PF_B)
 BCOMBO(LBRC,   &kp LBRC,   L_SYM_KEY L_RF_B, R_SYM_KEY R_RF_B)
 BCOMBO(LBKT,   &kp LBKT,   L_SYM_KEY L_MF_B, R_SYM_KEY R_MF_B)
 BCOMBO(LPAR,   &kp LPAR,   L_SYM_KEY L_IF_B, R_SYM_KEY R_IF_B)
@@ -192,7 +193,7 @@ BCOMBO(N1,     &kp N1,     L_SYM_KEY L_RF_B L_IF_B, R_SYM_KEY R_IF_B R_RF_B)
 BCOMBO(N2,     &kp N2,     L_SYM_KEY L_RF_B L_MF_B, R_SYM_KEY R_MF_B R_RF_B)
 BCOMBO(N3,     &kp N3,     L_SYM_KEY L_PF_B L_MF_B, R_SYM_KEY R_MF_B R_PF_B)
 BCOMBO(N4,     &kp N4,     L_SYM_KEY L_PF_B L_RF_B, R_SYM_KEY R_RF_B R_PF_B)
-BCOMBO(N5,     &kp N5,     L_SYM_KEY L_MF_F L_IF_F, R_SYM_KEY L_IF_F L_MF_F)
+BCOMBO(N5,     &kp N5,     L_SYM_KEY L_MF_F L_IF_F, R_SYM_KEY R_IF_F R_MF_F)
 BCOMBO(N6,     &kp N6,     L_SYM_KEY L_RF_F L_IF_F, R_SYM_KEY R_IF_F R_RF_F)
 BCOMBO(N7,     &kp N7,     L_SYM_KEY L_RF_F L_MF_F, R_SYM_KEY R_MF_F R_RF_F)
 BCOMBO(N8,     &kp N8,     L_SYM_KEY L_PF_F L_MF_F, R_SYM_KEY R_MF_F R_PF_F)
@@ -208,7 +209,7 @@ BCOMBO(F1,     &kp F1,     L_FN_KEY L_RF_B L_IF_B, R_FN_KEY R_IF_B R_RF_B)
 BCOMBO(F2,     &kp F2,     L_FN_KEY L_RF_B L_MF_B, R_FN_KEY R_MF_B R_RF_B)
 BCOMBO(F3,     &kp F3,     L_FN_KEY L_PF_B L_MF_B, R_FN_KEY R_MF_B R_PF_B)
 BCOMBO(F4,     &kp F4,     L_FN_KEY L_PF_B L_RF_B, R_FN_KEY R_RF_B R_PF_B)
-BCOMBO(F5,     &kp F5,     L_FN_KEY L_MF_F L_IF_F, R_FN_KEY L_IF_F L_MF_F)
+BCOMBO(F5,     &kp F5,     L_FN_KEY L_MF_F L_IF_F, R_FN_KEY R_IF_F R_MF_F)
 BCOMBO(F6,     &kp F6,     L_FN_KEY L_RF_F L_IF_F, R_FN_KEY R_IF_F R_RF_F)
 BCOMBO(F7,     &kp F7,     L_FN_KEY L_RF_F L_MF_F, R_FN_KEY R_MF_F R_RF_F)
 BCOMBO(F8,     &kp F8,     L_FN_KEY L_PF_F L_MF_F, R_FN_KEY R_MF_F R_PF_F)
@@ -230,7 +231,7 @@ BCOMBO(MB2, &mkp MB2, L_MF_B, R_MF_B)
 BCOMBO(MB3, &mkp MB3, L_RF_B, R_RF_B)
 
 BCOMBO(SCR_UP,    &msc SCRL_UP,    L_PF_F, R_PF_F)
-BCOMBO(SCR_DOWN,  &msc SCRL_DOWN,  L_PF_R, R_PF_R)
+BCOMBO(SCR_DOWN,  &msc SCRL_DOWN,  L_PF_B, R_PF_B)
 BCOMBO(SCR_LEFT,  &msc SCRL_LEFT,  L_PF_L, R_PF_L)
 BCOMBO(SCR_RIGHT, &msc SCRL_RIGHT, L_PF_R, R_PF_R)
 
@@ -261,7 +262,7 @@ BCOMBO(end,  &kp END,  L_IF_F, R_PF_F)
 #define COMBO_LAYERS BASE_LAYERS
 
 BCOMBO(CTLL, &kp LC(L), L_MF_L, R_MF_R)
-BCOMBO(CTLB, &kp LC(B), L_RF_R, R_RF_L)
+BCOMBO(CTLB, &kp LC(B), L_RF_L, R_RF_R)
 
 //
 // Linux combos

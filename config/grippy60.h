@@ -12,8 +12,8 @@
 
 // TIMEOUTS
 #define TIMEOUT_SMALL 80
-#define TIMEOUT_NORMAL 150
-#define TIMEOUT_LONG 250
+#define TIMEOUT_NORMAL 100
+#define TIMEOUT_LONG 200
 #define TIMEOUT_XLONG 1500
 
 // Labels for switch directions according to the matrix
@@ -98,3 +98,11 @@
 #define R_PF_R 57
 #define L_PF_B 58
 #define R_PF_B 59
+
+// clang-format off
+
+// Layer helpers
+#define SWITCH_BLANK                        \
+              &none             &none       \
+        &none &none &none &none &none &none \
+              &none             &none
