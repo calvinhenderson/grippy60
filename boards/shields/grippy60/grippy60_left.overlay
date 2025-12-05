@@ -6,7 +6,7 @@
     status = "okay";
     device = <&imummv_l>;
     input-processors = <
-      &zip_xy_scaler 1 2
+      &zip_xy_scaler 1 5
       &zip_temp_layer 2 250
     >;
   };
@@ -16,7 +16,7 @@
     status = "okay";
     device = <&imumsc_l>;
     input-processors = <
-      &zip_xy_scaler 1 10
+      &zip_xy_scaler 1 100
       &zip_xy_to_scroll_mapper
       &zip_temp_layer 2 250
     >;
